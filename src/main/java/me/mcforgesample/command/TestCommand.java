@@ -1,6 +1,8 @@
 package me.mcforgesample.command;
 
 import me.mcforgesample.Main;
+import me.mcforgesample.util.HypixelEntityExtractor;
+import me.mcforgesample.wrapper.StackedEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -30,6 +32,10 @@ public class TestCommand extends CommandBase {
 		// define what happens when the command is executed
 		// in this case a simple message is displayed
 		Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("TestCommand"));
+
+		// display all entities visible to the client
+		for (StackedEntity e : HypixelEntityExtractor.extractAllStackedEntities())
+			System.out.println(e);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package me.mcforgesample;
 
 import me.mcforgesample.command.TestCommand;
+import me.mcforgesample.util.Settings;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -14,8 +15,13 @@ public class Main {
 	public static final String MODID = "mcforgesample";
 	public static final String VERSION = "1.0.0";
 
+	private Settings settings;
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		settings = new Settings(this);
+		settings.setFolder(event);
+		settings.createSettingsFolderAndFile();
 		System.out.println("[OK] preInit MC Forge 1.8.9 Example Mod");
 	}
 
@@ -34,5 +40,9 @@ public class Main {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		System.out.println("[OK] postInit MC Forge 1.8.9 Example Mod");
+	}
+
+	public Settings getSettings() {
+		return settings;
 	}
 }

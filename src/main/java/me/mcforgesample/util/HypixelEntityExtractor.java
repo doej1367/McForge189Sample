@@ -46,9 +46,10 @@ public class HypixelEntityExtractor {
 				String displayName = e.getDisplayName().getUnformattedText();
 				ArrayList<ItemStack> inventoryContents = new ArrayList<ItemStack>();
 				ItemStack[] inv = e.getInventory();
-				for (ItemStack i : inv)
-					if (i != null)
-						inventoryContents.add(i);
+				if (inv != null)
+					for (ItemStack i : inv)
+						if (i != null)
+							inventoryContents.add(i);
 				drops.add(new StackedEntity(displayName, v, inventoryContents));
 			}
 			Collections.sort(drops);

@@ -1,14 +1,10 @@
 package me.mcforgesample.command;
 
-import java.util.List;
-
 import me.mcforgesample.Main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 
 public class TestCommand extends CommandBase {

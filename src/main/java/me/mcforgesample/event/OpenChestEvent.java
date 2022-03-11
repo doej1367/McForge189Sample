@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import me.mcforgesample.wrapper.MinecraftItem;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 

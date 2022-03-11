@@ -1,7 +1,6 @@
 package me.mcforgesample;
 
 import me.mcforgesample.event.OpenChestEvent;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
@@ -25,7 +24,7 @@ public class MinecraftEventHandler {
 	public void onChatMessageReceived(ClientChatReceivedEvent event) {
 		// event.type: 0 = chat, 2 = overHotbar
 		byte type = event.type;
-		
+
 	}
 
 	@SideOnly(Side.CLIENT)

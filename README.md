@@ -1,2 +1,4 @@
 # Mc Forge 1.8.9 Example
 An example project for Forge 1.8.9 that can be used as a template with useful code snippets and step by step guides in the [Wiki section](https://github.com/doej1367/McForge189Sample/wiki) of this repository. The main reason being that there apparently is no documentation or official support for 1.8.9 anymore, despite it being widely used on the Hypixel network.
+
+**The vision**: The mod is ment to provide the main code blocks for many client side only features and provide all the necessary toolboxes and show how to get information about enitiys, blocks, sidebars, chat, chest guis and all the other surroundings. Once all that information has been collected it should be displayed in an overlay fashion. Overlay elements in the sidebar category should be easily rearrangable. This would make this mod a good starting point for every beginner who wants to develop a Forge 1.8.9 overlay mod for the Hypixel server.

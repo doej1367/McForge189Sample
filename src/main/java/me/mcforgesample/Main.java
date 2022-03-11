@@ -28,9 +28,9 @@ public class Main
 		ClientCommandHandler.instance.registerCommand(new TestCommand(this));
 		// converting Forge events into readable Minecraft events
 		MinecraftForge.EVENT_BUS.register(new MinecraftEventHandler(this));
-		// handling Hypixel events
+		// handling custom Minecraft events
 		
-		// TODO (placeholder for more event handlers)
+		
 		System.out.println("[OK] registered events");
 		System.out.println("[OK] init MC Forge 1.8.9 Example Mod");
 	}

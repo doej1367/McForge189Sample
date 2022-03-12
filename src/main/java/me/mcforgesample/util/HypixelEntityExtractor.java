@@ -49,7 +49,7 @@ public class HypixelEntityExtractor {
 			Vec3 playerPos = Minecraft.getMinecraft().thePlayer.getPositionVector();
 			for (Iterator iterator = result.iterator(); iterator.hasNext();) {
 				StackedEntity stackedEntity = (StackedEntity) iterator.next();
-				if (stackedEntity.getPos().distanceTo(playerPos) <= 0.5)
+				if (stackedEntity.getPos().distanceTo(playerPos) <= 0.03)
 					iterator.remove();
 			}
 			return result;

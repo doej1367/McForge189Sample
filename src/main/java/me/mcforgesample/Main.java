@@ -1,5 +1,6 @@
 package me.mcforgesample;
 
+import me.mcforgesample.command.DebugViewCommand;
 import me.mcforgesample.command.TestCommand;
 import me.mcforgesample.util.Settings;
 import net.minecraftforge.client.ClientCommandHandler;
@@ -29,6 +30,7 @@ public class Main {
 	public void init(FMLInitializationEvent event) {
 		// create commands
 		ClientCommandHandler.instance.registerCommand(new TestCommand(this));
+		ClientCommandHandler.instance.registerCommand(new DebugViewCommand(this));
 		// converting Forge events into readable Minecraft events
 		MinecraftForge.EVENT_BUS.register(new MinecraftEventHandler(this));
 		// handling custom Minecraft events

@@ -1,60 +1,56 @@
 package me.mcforgesample.wrapper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 
-public class StackedEntity implements Comparable<StackedEntity> {
-	private String name;
-	private Vec3 pos;
+public class StackedEntity {
+	private ArrayList<Entity> entities;
 	private ArrayList<ItemStack> inv;
 
-	public StackedEntity(String displayName, Vec3 v, ArrayList<ItemStack> inventoryContents) {
-		this.name = displayName;
-		this.pos = v;
-		this.inv = inventoryContents;
-	}
-
-	@Override
-	public int compareTo(StackedEntity o) {
-		if (!(o instanceof StackedEntity))
-			return -2;
-		if (Math.abs(pos.xCoord - o.pos.xCoord) + Math.abs(pos.zCoord - o.pos.zCoord) <= 0.03126
-				&& Math.abs(pos.yCoord - o.pos.yCoord) <= 2.0)
-			return 0;
-		else if (pos.xCoord != o.pos.xCoord)
-			return (int) Math.signum(pos.xCoord - o.pos.xCoord);
-		else if (pos.zCoord != o.pos.zCoord)
-			return (int) Math.signum(pos.zCoord - o.pos.zCoord);
-		else if (pos.yCoord != o.pos.yCoord)
-			return (int) Math.signum(pos.yCoord - o.pos.yCoord);
-		return 0;
+	public StackedEntity(Entity e) {
+		this.entities = new ArrayList<Entity>();
+		entities.add(e);
 	}
 
 	public String getName() {
-		return name;
+		return entities.stream().map(a -> a.getName()).reduce("", (a, b) -> a + (a.isEmpty() ? "" : " ") + b);
+	}
+
+	public int getStackSize() {
+		return entities.size();
 	}
 
 	public Vec3 getPos() {
-		return pos;
+		return entities.get(getStackSize() - 1).getPositionVector();
 	}
 
 	public ArrayList<ItemStack> getInv() {
-		return inv;
+		ArrayList<ItemStack> result = new ArrayList<>();
+		entities.stream().map(a -> a.getInventory()).map(Arrays::asList).forEach(result::addAll);
+		return result;
+	}
+
+	public boolean add(Entity e) {
+		if (isCloseTo(e))
+			return entities.add(e);
+		return false;
+	}
+
+	private boolean isCloseTo(Entity entity) {
+		for (Entity e : entities)
+			if (Math.abs(e.posY - entity.posY) <= 0.6) // TODO fine tune
+				return true;
+		return false;
 	}
 
 	@Override
 	public String toString() {
-		return name + "," + pos.xCoord + "," + pos.yCoord + "," + pos.zCoord + ","
-				+ (inv.size() > 0 ? (inv.get(0) != null ? inv.get(0).getDisplayName() : "") : "");
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof StackedEntity))
-			return false;
-		return compareTo((StackedEntity) obj) == 0;
+		// TODO
+		return "";
 	}
 
 }

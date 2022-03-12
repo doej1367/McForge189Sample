@@ -1,8 +1,11 @@
 package me.mcforgesample.command;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import me.mcforgesample.Main;
 import me.mcforgesample.util.HypixelEntityExtractor;
 import me.mcforgesample.wrapper.StackedEntity;
+import moulberry.notenoughupdates.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -34,8 +37,10 @@ public class TestCommand extends CommandBase {
 		Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("TestCommand"));
 
 		// display all entities visible to the client
-		for (StackedEntity e : HypixelEntityExtractor.extractAllStackedEntities())
-			System.out.println(e);
+		for (StackedEntity e : HypixelEntityExtractor.extractAllStackedEntities()) {
+			RenderUtil.renderWayPoint(e.getName(),
+					new Vector3f((float) e.getPos().xCoord, (float) e.getPos().yCoord, (float) e.getPos().zCoord), 50); // TODO
+		}
 	}
 
 	@Override

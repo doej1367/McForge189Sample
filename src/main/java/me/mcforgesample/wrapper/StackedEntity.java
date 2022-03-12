@@ -21,7 +21,7 @@ public class StackedEntity implements Comparable<StackedEntity> {
 		if (!(o instanceof StackedEntity))
 			return -2;
 		if (Math.abs(pos.xCoord - o.pos.xCoord) + Math.abs(pos.zCoord - o.pos.zCoord) <= 0.03126
-				&& Math.abs(pos.yCoord - o.pos.yCoord) <= 1.5)
+				&& Math.abs(pos.yCoord - o.pos.yCoord) <= 2.0)
 			return 0;
 		else if (pos.xCoord != o.pos.xCoord)
 			return (int) Math.signum(pos.xCoord - o.pos.xCoord);

@@ -1,11 +1,17 @@
 package me.mcforgesample;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import me.mcforgesample.event.OpenChestEvent;
+import me.mcforgesample.util.HypixelEntityExtractor;
+import me.mcforgesample.wrapper.StackedEntity;
+import moulberry.notenoughupdates.util.RenderUtil;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -55,5 +61,15 @@ public class MinecraftEventHandler {
 		// a full list can be found here:
 		// https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/mapping-and-modding-tutorials/2213619-1-8-all-playsound-sound-arguments
 		// # event.sound.getPitch() - e.g. 0.8f or 1.0f
+	}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void onWorldRender(RenderWorldLastEvent event) {
+		if (main.getSettings().getSetting("debug").equalsIgnoreCase("true"))
+			for (StackedEntity e : HypixelEntityExtractor.extractAllStackedEntities())
+				RenderUtil.renderWayPoint(e.getName(),
+						new Vector3f((float) e.getPos().xCoord, (float) e.getPos().yCoord, (float) e.getPos().zCoord),
+						event.partialTicks); // TODO
 	}
 }

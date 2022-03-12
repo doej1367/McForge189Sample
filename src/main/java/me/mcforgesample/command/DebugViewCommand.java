@@ -7,17 +7,17 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
-public class TestCommand extends CommandBase {
+public class DebugViewCommand extends CommandBase {
 	private Main main;
 
-	public TestCommand(Main main) {
+	public DebugViewCommand(Main main) {
 		this.main = main;
 	}
 
 	@Override
 	public String getCommandName() {
 		// the command can be used by typing '/test' in chat
-		return "test";
+		return "debugview";
 	}
 
 	@Override
@@ -27,9 +27,15 @@ public class TestCommand extends CommandBase {
 
 	@Override
 	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-		// define what happens when the command is executed
-		// in this case a simple message is displayed
-		Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("TestCommand"));
+		if (main.getSettings().getSetting("debug").equalsIgnoreCase("true")) {
+			main.getSettings().putSetting("debug", "false");
+			Minecraft.getMinecraft().thePlayer
+					.addChatMessage(new ChatComponentText("McForgeSample > debug view disabled"));
+		} else {
+			main.getSettings().putSetting("debug", "true");
+			Minecraft.getMinecraft().thePlayer
+					.addChatMessage(new ChatComponentText("McForgeSample > debug view enabled"));
+		}
 	}
 
 	@Override

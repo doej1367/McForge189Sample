@@ -43,10 +43,8 @@ public class Settings {
 	}
 
 	public String getSetting(String setting) {
-		try {
-			@SuppressWarnings("resource")
-			BufferedReader reader = new BufferedReader(
-					new InputStreamReader(new FileInputStream(settingsFile), StandardCharsets.UTF_8));
+		try (BufferedReader reader = new BufferedReader(
+				new InputStreamReader(new FileInputStream(settingsFile), StandardCharsets.UTF_8))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				if (line.isEmpty() || !line.contains(":") || line.split(":")[0].length() <= 0)

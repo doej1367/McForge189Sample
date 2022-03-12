@@ -380,9 +380,9 @@ public class RenderUtil {
 		double viewerY = viewer.lastTickPosY + (viewer.posY - viewer.lastTickPosY) * partialTicks;
 		double viewerZ = viewer.lastTickPosZ + (viewer.posZ - viewer.lastTickPosZ) * partialTicks;
 
-		double x = loc.x - viewerX + 0.5f;
+		double x = loc.x - viewerX;
 		double y = loc.y - viewerY - viewer.getEyeHeight();
-		double z = loc.z - viewerZ + 0.5f;
+		double z = loc.z - viewerZ;
 
 		double distSq = x * x + y * y + z * z;
 		double dist = Math.sqrt(distSq);

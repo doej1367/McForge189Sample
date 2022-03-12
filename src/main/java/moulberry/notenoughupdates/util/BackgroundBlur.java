@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**
  * Taken from NotEnoughUpdates under Creative Commons Attribution-NonCommercial
  * 3.0 https://github.com/Moulberry/NotEnoughUpdates/blob/master/LICENSE
- * 
+ *
  * @author Moulberry
  */
 public class BackgroundBlur {
@@ -40,10 +40,10 @@ public class BackgroundBlur {
 		}
 	}
 
-	private static final HashMap<Float, OutputStuff> blurOutput = new HashMap<Float, OutputStuff>();
-	private static final HashMap<Float, Long> lastBlurUse = new HashMap<Float, Long>();
+	private static final HashMap<Float, OutputStuff> blurOutput = new HashMap<>();
+	private static final HashMap<Float, Long> lastBlurUse = new HashMap<>();
 	private static long lastBlur = 0;
-	private static final HashSet<Float> requestedBlurs = new HashSet<Float>();
+	private static final HashSet<Float> requestedBlurs = new HashSet<>();
 
 	private static int fogColour = 0;
 	private static boolean registered = false;
@@ -95,7 +95,7 @@ public class BackgroundBlur {
 				blurBackground(output, blur);
 			}
 
-			Set<Float> remove = new HashSet<Float>();
+			Set<Float> remove = new HashSet<>();
 			for (Map.Entry<Float, Long> entry : lastBlurUse.entrySet()) {
 				if (currentTime - entry.getValue() > 30 * 1000) {
 					remove.add(entry.getKey());
@@ -147,8 +147,8 @@ public class BackgroundBlur {
 	private static Matrix4f createProjectionMatrix(int width, int height) {
 		Matrix4f projMatrix = new Matrix4f();
 		projMatrix.setIdentity();
-		projMatrix.m00 = 2.0F / (float) width;
-		projMatrix.m11 = 2.0F / (float) (-height);
+		projMatrix.m00 = 2.0F / width;
+		projMatrix.m11 = 2.0F / (-height);
 		projMatrix.m22 = -0.0020001999F;
 		projMatrix.m33 = 1.0F;
 		projMatrix.m03 = -1.0F;
@@ -239,9 +239,7 @@ public class BackgroundBlur {
 	 */
 	public static void renderBlurredBackground(float blurStrength, int screenWidth, int screenHeight, int x, int y,
 			int blurWidth, int blurHeight, boolean forcedUpdate) {
-		if (!OpenGlHelper.isFramebufferEnabled() || !OpenGlHelper.areShadersSupported())
-			return;
-		if (blurStrength < 0.5)
+		if (!OpenGlHelper.isFramebufferEnabled() || !OpenGlHelper.areShadersSupported() || (blurStrength < 0.5))
 			return;
 		requestedBlurs.add(blurStrength);
 

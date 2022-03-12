@@ -10,12 +10,12 @@ public class StackedEntities {
 	private ArrayList<Entity> entities;
 
 	public StackedEntities(Entity e) {
-		this.entities = new ArrayList<Entity>();
+		this.entities = new ArrayList<>();
 		entities.add(e);
 	}
 
 	public ArrayList<StackedEntity> getStackedEntities() {
-		ArrayList<StackedEntity> result = new ArrayList<StackedEntity>();
+		ArrayList<StackedEntity> result = new ArrayList<>();
 		List<Entity> list = entities.stream().sorted((a, b) -> (int) -Math.signum((a.posY - b.posY)))
 				.collect(Collectors.toList());
 		StackedEntity se = null;

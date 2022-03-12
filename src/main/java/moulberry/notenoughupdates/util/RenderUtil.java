@@ -25,7 +25,7 @@ import net.minecraft.util.ResourceLocation;
 /**
  * Taken from NotEnoughUpdates under Creative Commons Attribution-NonCommercial
  * 3.0 https://github.com/Moulberry/NotEnoughUpdates/blob/master/LICENSE
- * 
+ *
  * @author Moulberry
  */
 public class RenderUtil {
@@ -123,14 +123,14 @@ public class RenderUtil {
 
 	public static void drawGradientRect(int zLevel, int left, int top, int right, int bottom, int startColor,
 			int endColor) {
-		float startAlpha = (float) (startColor >> 24 & 255) / 255.0F;
-		float startRed = (float) (startColor >> 16 & 255) / 255.0F;
-		float startGreen = (float) (startColor >> 8 & 255) / 255.0F;
-		float startBlue = (float) (startColor & 255) / 255.0F;
-		float endAlpha = (float) (endColor >> 24 & 255) / 255.0F;
-		float endRed = (float) (endColor >> 16 & 255) / 255.0F;
-		float endGreen = (float) (endColor >> 8 & 255) / 255.0F;
-		float endBlue = (float) (endColor & 255) / 255.0F;
+		float startAlpha = (startColor >> 24 & 255) / 255.0F;
+		float startRed = (startColor >> 16 & 255) / 255.0F;
+		float startGreen = (startColor >> 8 & 255) / 255.0F;
+		float startBlue = (startColor & 255) / 255.0F;
+		float endAlpha = (endColor >> 24 & 255) / 255.0F;
+		float endRed = (endColor >> 16 & 255) / 255.0F;
+		float endGreen = (endColor >> 8 & 255) / 255.0F;
+		float endBlue = (endColor & 255) / 255.0F;
 
 		GlStateManager.disableTexture2D();
 		GlStateManager.enableBlend();
@@ -179,7 +179,7 @@ public class RenderUtil {
 		GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
 
 		double time = Minecraft.getMinecraft().theWorld.getTotalWorldTime() + (double) partialTicks;
-		double d1 = MathHelper.func_181162_h(-time * 0.2D - (double) MathHelper.floor_double(-time * 0.1D));
+		double d1 = MathHelper.func_181162_h(-time * 0.2D - MathHelper.floor_double(-time * 0.1D));
 
 		float r = ((rgb >> 16) & 0xFF) / 255f;
 		float g = ((rgb >> 8) & 0xFF) / 255f;
@@ -194,7 +194,7 @@ public class RenderUtil {
 		double d10 = 0.5D + Math.cos(d2 + 5.497787143782138D) * 0.2D;
 		double d11 = 0.5D + Math.sin(d2 + 5.497787143782138D) * 0.2D;
 		double d14 = -1.0D + d1;
-		double d15 = (double) (height) * 2.5D + d14;
+		double d15 = (height) * 2.5D + d14;
 		worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
 		worldrenderer.pos(x + d4, y + topOffset, z + d5).tex(1.0D, d15).color(r, g, b, 1.0F * alphaMult).endVertex();
 		worldrenderer.pos(x + d4, y + bottomOffset, z + d5).tex(1.0D, d14).color(r, g, b, 1.0F).endVertex();

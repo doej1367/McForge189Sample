@@ -16,7 +16,7 @@ public class OpenChestEvent extends Event {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the name of the chest menu.
 	 */
 	public IChatComponent getChestTitle() {
@@ -24,7 +24,7 @@ public class OpenChestEvent extends Event {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return ArrayList of non-null MinecraftItem's. Empty if there are none.
 	 */
 	public ArrayList<MinecraftItem> getChestContents() {

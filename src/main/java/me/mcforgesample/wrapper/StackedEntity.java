@@ -12,7 +12,7 @@ public class StackedEntity {
 	private ArrayList<ItemStack> inv;
 
 	public StackedEntity(Entity e) {
-		this.entities = new ArrayList<Entity>();
+		this.entities = new ArrayList<>();
 		entities.add(e);
 	}
 

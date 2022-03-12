@@ -2,6 +2,7 @@ package me.mcforgesample.util;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.List;
 
 import me.mcforgesample.wrapper.StackedEntitiesList;
@@ -12,7 +13,7 @@ import net.minecraft.util.Vec3;
 
 public class HypixelEntityExtractor {
 	/**
-	 * 
+	 *
 	 * @return all stacked entities
 	 */
 	public static ArrayList<StackedEntity> extractAllStackedEntities() {
@@ -20,7 +21,7 @@ public class HypixelEntityExtractor {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param position           - the center of the selected area
 	 * @param radius             - the radius of the selected area around the center
 	 * @param horizontalDistance - defines the shape of the selected area. true
@@ -44,9 +45,16 @@ public class HypixelEntityExtractor {
 				costumMobs.add(e);
 			}
 			// step 2: group together multiple entities belonging to the same drop
-			return costumMobs.getStackedEntities();
+			ArrayList<StackedEntity> result = costumMobs.getStackedEntities();
+			Vec3 playerPos = Minecraft.getMinecraft().thePlayer.getPositionVector();
+			for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+				StackedEntity stackedEntity = (StackedEntity) iterator.next();
+				if (stackedEntity.getPos().distanceTo(playerPos) <= 0.5)
+					iterator.remove();
+			}
+			return result;
 		} catch (ConcurrentModificationException e) {
-			return new ArrayList<StackedEntity>();
+			return new ArrayList<>();
 		}
 	}
 }

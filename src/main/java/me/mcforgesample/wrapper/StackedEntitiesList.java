@@ -14,7 +14,7 @@ public class StackedEntitiesList extends ArrayList<StackedEntities> {
 	}
 
 	public ArrayList<StackedEntity> getStackedEntities() {
-		ArrayList<StackedEntity> entities = new ArrayList<StackedEntity>();
+		ArrayList<StackedEntity> entities = new ArrayList<>();
 		for (StackedEntities se : this)
 			entities.addAll(se.getStackedEntities());
 		return entities;

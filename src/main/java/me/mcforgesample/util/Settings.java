@@ -20,7 +20,7 @@ public class Settings {
 	private File settingsFile;
 	private Main main;
 	private File logFolder;
-	private HashSet<String> logFileNames = new HashSet<String>();
+	private HashSet<String> logFileNames = new HashSet<>();
 
 	public Settings(Main main) {
 		this.main = main;
@@ -58,7 +58,7 @@ public class Settings {
 	}
 
 	public void putSetting(String setting, String value) {
-		HashMap<String, String> settings = new HashMap<String, String>();
+		HashMap<String, String> settings = new HashMap<>();
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(

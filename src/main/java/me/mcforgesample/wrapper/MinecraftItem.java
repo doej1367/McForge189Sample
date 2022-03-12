@@ -11,7 +11,7 @@ public class MinecraftItem {
 	/**
 	 * Tip: format codes from attributes can be removed using </br>
 	 * <code>.replaceAll("\\u00a7.", "");</code>
-	 * 
+	 *
 	 * @param itemStack
 	 */
 	public MinecraftItem(ItemStack itemStack) {
@@ -19,7 +19,7 @@ public class MinecraftItem {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the name of the chest menu.
 	 */
 	public String getName() {
@@ -27,12 +27,12 @@ public class MinecraftItem {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return all lore lines in an ArrayList of strings. Empty if there are none.
 	 */
 	public ArrayList<String> getLore() {
 		NBTTagList lore = itemStack.getTagCompound().getCompoundTag("display").getTagList("Lore", 8);
-		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String> result = new ArrayList<>();
 		for (int i = 0; i < lore.tagCount(); i++)
 			result.add(lore.getStringTagAt(i));
 		return result;

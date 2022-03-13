@@ -42,7 +42,7 @@ public class StackedEntity {
 
 	private boolean isCloseTo(Entity entity) {
 		for (Entity e : entities)
-			if (Math.abs(e.posY - entity.posY) <= 0.6) // TODO fine tune
+			if (Math.abs(e.posY - entity.posY) <= 4.0) // TODO fine tune
 				return true;
 		return false;
 	}

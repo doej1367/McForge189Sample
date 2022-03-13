@@ -21,6 +21,7 @@ public class Settings {
 	private Main main;
 	private File logFolder;
 	private HashSet<String> logFileNames = new HashSet<>();
+	private HashMap<String, String> settings_cache = new HashMap<>();
 
 	public Settings(Main main) {
 		this.main = main;
@@ -43,6 +44,9 @@ public class Settings {
 	}
 
 	public String getSetting(String setting) {
+		String cached = settings_cache.get(setting);
+		if (cached != null)
+			return cached;
 		try (BufferedReader reader = new BufferedReader(
 				new InputStreamReader(new FileInputStream(settingsFile), StandardCharsets.UTF_8))) {
 			String line;
@@ -50,7 +54,7 @@ public class Settings {
 				if (line.isEmpty() || !line.contains(":") || line.split(":")[0].length() <= 0)
 					continue;
 				if (line.split(":")[0].equalsIgnoreCase(setting))
-					return line.split(":")[1];
+					return line.split(":").length > 1 ? line.split(":")[1] : "";
 			}
 		} catch (IOException ignored) {
 		}
@@ -58,6 +62,7 @@ public class Settings {
 	}
 
 	public void putSetting(String setting, String value) {
+		settings_cache.put(setting, value);
 		HashMap<String, String> settings = new HashMap<>();
 		BufferedReader reader;
 		try {
@@ -67,7 +72,7 @@ public class Settings {
 			while ((line = reader.readLine()) != null) {
 				if (line.isEmpty() || !line.contains(":") || line.split(":")[0].length() <= 0)
 					continue;
-				settings.put(line.split(":")[0], line.split(":")[1]);
+				settings.put(line.split(":")[0], line.split(":").length > 1 ? line.split(":")[1] : "");
 			}
 			reader.close();
 			settings.put(setting, value);
@@ -75,7 +80,7 @@ public class Settings {
 			writer = new BufferedWriter(
 					new OutputStreamWriter(new FileOutputStream(settingsFile, false), StandardCharsets.UTF_8));
 			for (Entry<String, String> e : settings.entrySet())
-				writer.append(e.getKey() + ":" + e.getValue());
+				writer.append(e.getKey() + ":" + e.getValue() + "\n");
 			writer.close();
 		} catch (IOException ignored) {
 		}

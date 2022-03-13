@@ -8,6 +8,8 @@ import java.util.List;
 import me.mcforgesample.wrapper.StackedEntitiesList;
 import me.mcforgesample.wrapper.StackedEntity;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
 
@@ -21,6 +23,7 @@ public class HypixelEntityExtractor {
 	}
 
 	/**
+	 * This excludes players
 	 *
 	 * @param position           - the center of the selected area
 	 * @param radius             - the radius of the selected area around the center
@@ -38,6 +41,8 @@ public class HypixelEntityExtractor {
 			List<Entity> entities = Minecraft.getMinecraft().theWorld.getLoadedEntityList();
 			StackedEntitiesList costumMobs = new StackedEntitiesList();
 			for (Entity e : entities) {
+				if (e instanceof EntityOtherPlayerMP || e instanceof EntityPlayerSP)
+					continue;
 				Vec3 v = e.getPositionVector();
 				if (position != null && (horizontalDistance ? HorizontalPlane.distanceBetween(position, v) > radius
 						: (position.distanceTo(v) > radius)))
@@ -45,14 +50,7 @@ public class HypixelEntityExtractor {
 				costumMobs.add(e);
 			}
 			// step 2: group together multiple entities belonging to the same drop
-			ArrayList<StackedEntity> result = costumMobs.getStackedEntities();
-			Vec3 playerPos = Minecraft.getMinecraft().thePlayer.getPositionVector();
-			for (Iterator iterator = result.iterator(); iterator.hasNext();) {
-				StackedEntity stackedEntity = (StackedEntity) iterator.next();
-				if (stackedEntity.getPos().distanceTo(playerPos) <= 0.03)
-					iterator.remove();
-			}
-			return result;
+			return costumMobs.getStackedEntities();
 		} catch (ConcurrentModificationException e) {
 			return new ArrayList<>();
 		}

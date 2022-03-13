@@ -66,10 +66,13 @@ public class MinecraftEventHandler {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onWorldRender(RenderWorldLastEvent event) {
-		if (main.getSettings().getSetting("debug").equalsIgnoreCase("true"))
+		if (main.getSettings().getSetting("debug").equalsIgnoreCase("true")) {
+			String debugFilter = main.getSettings().getSetting("debugFilter").equalsIgnoreCase("debug") ? ""
+					: main.getSettings().getSetting("debugFilter");
 			for (StackedEntity e : HypixelEntityExtractor.extractAllStackedEntities())
-				RenderUtil.renderWayPoint(e.getName(),
-						new Vector3f((float) e.getPos().xCoord, (float) e.getPos().yCoord, (float) e.getPos().zCoord),
-						event.partialTicks); // TODO
+				if (e.getName().matches(debugFilter))
+					RenderUtil.renderWayPoint(e.getName(), new Vector3f((float) e.getPos().xCoord,
+							(float) e.getPos().yCoord, (float) e.getPos().zCoord), event.partialTicks); // TODO
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package me.mcforgesample;
 
+import me.mcforgesample.command.DebugSoundCommand;
 import me.mcforgesample.command.DebugViewCommand;
 import me.mcforgesample.command.TestCommand;
 import me.mcforgesample.util.Settings;
@@ -31,6 +32,7 @@ public class Main {
 		// create commands
 		ClientCommandHandler.instance.registerCommand(new TestCommand(this));
 		ClientCommandHandler.instance.registerCommand(new DebugViewCommand(this));
+		ClientCommandHandler.instance.registerCommand(new DebugSoundCommand(this));
 		// converting Forge events into readable Minecraft events
 		MinecraftForge.EVENT_BUS.register(new MinecraftEventHandler(this));
 		// handling custom Minecraft events

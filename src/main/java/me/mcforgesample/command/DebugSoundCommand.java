@@ -7,40 +7,40 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
-public class DebugViewCommand extends CommandBase {
+public class DebugSoundCommand extends CommandBase {
 	private Main main;
 
-	public DebugViewCommand(Main main) {
+	public DebugSoundCommand(Main main) {
 		this.main = main;
 	}
 
 	@Override
 	public String getCommandName() {
-		// the command can be used by typing '/debugview' in chat
-		return "debugview";
+		// the command can be used by typing '/debugsound' in chat
+		return "debugsound";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
-		return "mcforgesample debugview command";
+		return "mcforgesample debugsound command";
 	}
 
 	@Override
 	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
 		if (args != null && args.length > 0 && args[0].equalsIgnoreCase("off")) {
-			main.getSettings().putSetting("debugview", "false");
+			main.getSettings().putSetting("debugsound", "false");
 			Minecraft.getMinecraft().thePlayer
-					.addChatMessage(new ChatComponentText("McForgeSample > debug view disabled"));
+					.addChatMessage(new ChatComponentText("McForgeSample > debug sound disabled"));
 		} else {
-			main.getSettings().putSetting("debugview", "true");
+			main.getSettings().putSetting("debugsound", "true");
 			String debugFilter = "";
 			if (args != null)
 				for (int i = 0; i < args.length; i++)
 					debugFilter += (debugFilter.isEmpty() ? "" : "|") + ".*" + args[i] + ".*";
 			debugFilter = debugFilter.isEmpty() ? ".*" : debugFilter;
-			main.getSettings().putSetting("debugViewFilter", debugFilter);
+			main.getSettings().putSetting("debugSoundFilter", debugFilter);
 			Minecraft.getMinecraft().thePlayer
-					.addChatMessage(new ChatComponentText("McForgeSample > debug view enabled"));
+					.addChatMessage(new ChatComponentText("McForgeSample > debug sound enabled"));
 		}
 	}
 

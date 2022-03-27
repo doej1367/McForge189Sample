@@ -1,5 +1,6 @@
 package me.mcforgesample;
 
+import me.mcforgesample.command.DebugMapsCommand;
 import me.mcforgesample.command.DebugSoundCommand;
 import me.mcforgesample.command.DebugViewCommand;
 import me.mcforgesample.command.TestCommand;
@@ -22,7 +23,7 @@ public class Main {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		settings = new Settings(this);
-		settings.setFolder(event);
+		settings.setLogFolder(event);
 		settings.createSettingsFolderAndFile();
 		System.out.println("[OK] preInit MC Forge 1.8.9 Example Mod");
 	}
@@ -33,6 +34,7 @@ public class Main {
 		ClientCommandHandler.instance.registerCommand(new TestCommand(this));
 		ClientCommandHandler.instance.registerCommand(new DebugViewCommand(this));
 		ClientCommandHandler.instance.registerCommand(new DebugSoundCommand(this));
+		ClientCommandHandler.instance.registerCommand(new DebugMapsCommand(this));
 		// converting Forge events into readable Minecraft events
 		MinecraftForge.EVENT_BUS.register(new MinecraftEventHandler(this));
 		// handling custom Minecraft events

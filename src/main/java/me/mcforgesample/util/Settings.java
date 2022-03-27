@@ -27,7 +27,11 @@ public class Settings {
 		this.main = main;
 	}
 
-	public void setFolder(FMLPreInitializationEvent event) {
+	public File getLogFolder() {
+		return logFolder;
+	}
+
+	public void setLogFolder(FMLPreInitializationEvent event) {
 		logFolder = new File(event.getModConfigurationDirectory(), Main.MODID);
 		logFolder.mkdirs();
 	}

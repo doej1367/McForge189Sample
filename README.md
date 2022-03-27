@@ -6,6 +6,11 @@ An example project for Forge 1.8.9 that can be used as a template with useful co
     - `/debugview` - shows all entity waypoints
     - `/debugview off` - hides all entity waypoints
     - `/debugview <name>` - shows all entity waypoints that contain the provided arguments in their name. For example `/debugview Squid Chicken` would show all squids and chickens in the players mob render distance.
+- `/debugsound` command that uses the waypoint render method from [moulberry's NEU mod](https://github.com/Moulberry/NotEnoughUpdates/blob/master/src/main/java/io/github/moulberry/notenoughupdates/core/util/render/RenderUtils.java) to display waypoints to sounds that are available to the forge client (excludes players)
+    - `/debugsound` - shows all sound waypoints
+    - `/debugsound off` - hides all sound waypoints
+    - `/debugsound <name>` - shows all sound waypoints that contain the provided arguments in their name. For example `/debugsound chicken.step` would show all step sounds made by chickens available to the forge client.
+- `/debugmaps` command that extracts all maps displayed in item frames visible to the forge client and saves them in png files under `.minecraft/config/mcforgesample/maps` as `png` files.
 
 ## The Vision
 The mod is ment to provide the main code blocks for many client side only features, provide all the necessary tools and show how to get information about enitiys, blocks, sidebars, chat, chest guis and all the other surroundings. Once all that information has been collected it should be displayed in an overlay fashion. Overlay elements in the sidebar category should be easily rearrangable. This would **make this mod a good starting point for every beginner** who wants to develop a Forge 1.8.9 overlay mod for the Hypixel server.

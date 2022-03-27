@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Main.MODID, version = Main.VERSION)
 public class Main {
 	public static final String MODID = "mcforgesample";
-	public static final String VERSION = "1.0.0";
+	public static final String VERSION = "1.1.0";
 
 	private Settings settings;
 
